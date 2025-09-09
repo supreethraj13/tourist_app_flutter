@@ -1,0 +1,25 @@
+name: smart_tourist
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.0-75.1.beta
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0 
+  google_maps_flutter: ^2.5.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lib/assets/imgs/tourist_app_logo.jpg
+
