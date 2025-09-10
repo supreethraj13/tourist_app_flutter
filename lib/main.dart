@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_tourist/provider/userprovider.dart';
+import 'package:smart_tourist/screens/Registerscreen.dart';
 import 'package:smart_tourist/screens/homescreen.dart';
 import 'package:smart_tourist/screens/loginscreen.dart';
 import 'package:smart_tourist/screens/profilescreen.dart';
@@ -20,9 +21,10 @@ class MainApp extends StatelessWidget {
         title: 'Tourist Safety Monitor',
         theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: '/register',
         routes: {
-          '/': (context) => const Loginscreen(),
+          '/login': (context) => const Loginscreen(),
+          '/register': (context) => const Registerscreen(),
           '/home': (context) => const HomeScreen(),
           '/profile': (context) => const ProfileScreen(),
         },
