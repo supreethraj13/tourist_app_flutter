@@ -6,6 +6,7 @@ import 'package:smart_tourist/screens/homescreen.dart';
 import 'package:smart_tourist/screens/loginscreen.dart';
 import 'package:smart_tourist/screens/profilescreen.dart';
 import 'package:smart_tourist/screens/qrscreen.dart';
+import 'package:smart_tourist/screens/otpscreen.dart';
 
 void main() {
   runApp(SafeArea(child: const MainApp()));
@@ -24,8 +25,9 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/register',
         routes: {
-          '/login': (context) => const Loginscreen(),
+          '/login': (context) => LoginScreen(),
           '/qrscreen': (context) => const QrDisplayScreen(),
+          '/verify-otp': (context) => const OTPScreen(),
           '/register': (context) => const Registerscreen(),
           '/home': (context) => const HomeScreen(),
           '/profile': (context) => const ProfileScreen(),

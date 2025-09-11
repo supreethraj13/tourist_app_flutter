@@ -237,7 +237,7 @@ class _RegisterScreenState extends State<Registerscreen> {
 
                 // Back to Login
                 TextButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.pushNamed(context, '/login'),
                   child: Text('Already have Tourist ID? Login instead'),
                 ),
               ],

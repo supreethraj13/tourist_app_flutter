@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_flutter/qr_flutter.dart'; // Import the QR package
 import 'package:smart_tourist/models/usermodel.dart';
 import 'package:smart_tourist/provider/userprovider.dart';
+import 'package:smart_tourist/services/api_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
     final user = userProvider.user;
     final isEditable = userProvider.isProfileEditable;
 
-    // Controllers remain the same
+    // Use controllers to manage text field state
     final nameController = TextEditingController(text: user.fullName);
     final touristIdController = TextEditingController(text: user.touristId);
     final nationalityController = TextEditingController(text: user.nationality);
@@ -32,10 +32,6 @@ class ProfileScreen extends StatelessWidget {
     final emergencyRelationController = TextEditingController(
       text: user.emergencyContactRelation,
     );
-
-    // Data for the QR code from the user model
-    final String qrData =
-        'Tourist ID: ${user.touristId}\nName: ${user.fullName}';
 
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4FF),
@@ -60,45 +56,6 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // =========== QR CODE SECTION START ===========
-                const Center(
-                  child: Text(
-                    'Your Tourist ID',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: QrImageView(
-                      data: qrData,
-                      version: QrVersions.auto,
-                      size: 180.0,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 25),
-                const Divider(thickness: 1),
-                const SizedBox(height: 15),
-                // =========== QR CODE SECTION END ===========
-
-                // The rest of your profile fields remain unchanged
                 _buildProfileRow([
                   _buildProfileField('Full Name', nameController, isEditable),
                 ]),
@@ -106,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
                   _buildProfileField(
                     'Tourist ID',
                     touristIdController,
-                    isEditable,
+                    false, // Tourist ID should not be editable
                   ),
                   _buildProfileField(
                     'Nationality',
@@ -133,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                   _buildProfileField(
                     'Email',
                     emailController,
-                    isEditable,
+                    false, // Email should not be editable after registration
                     keyboardType: TextInputType.emailAddress,
                   ),
                 ]),
@@ -149,6 +106,7 @@ class ProfileScreen extends StatelessWidget {
                     isEditable,
                   ),
                 ]),
+
                 const SizedBox(height: 20),
                 const Text(
                   'Emergency Contact Details',
@@ -175,14 +133,54 @@ class ProfileScreen extends StatelessWidget {
                     isEditable,
                   ),
                 ]),
+
+                const SizedBox(height: 20),
+
+                // Blockchain Status
+                Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: user.blockchainStatus == 'ASSIGNED'
+                        ? Colors.green.shade50
+                        : Colors.orange.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: user.blockchainStatus == 'ASSIGNED'
+                          ? Colors.green.shade200
+                          : Colors.orange.shade200,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        user.blockchainStatus == 'ASSIGNED'
+                            ? Icons.verified
+                            : Icons.pending,
+                        color: user.blockchainStatus == 'ASSIGNED'
+                            ? Colors.green
+                            : Colors.orange,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Blockchain Status: ${user.blockchainStatus}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+
                 const SizedBox(height: 30),
+
+                // Action Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _buildActionButton('Save', Colors.green, () {
                       if (isEditable) {
+                        // Save updated data to provider
                         userProvider.updateUser(
                           UserModel(
+                            id: user.id,
                             fullName: nameController.text,
                             touristId: touristIdController.text,
                             nationality: nationalityController.text,
@@ -197,6 +195,9 @@ class ProfileScreen extends StatelessWidget {
                                 emergencyPhoneController.text,
                             emergencyContactRelation:
                                 emergencyRelationController.text,
+                            blockchainStatus: user.blockchainStatus,
+                            isVerified: user.isVerified,
+                            isActive: user.isActive,
                           ),
                         );
                         userProvider.setEditable(false);
@@ -208,8 +209,12 @@ class ProfileScreen extends StatelessWidget {
                     _buildActionButton('Edit', Colors.orange, () {
                       userProvider.setEditable(true);
                     }, isEnabled: !isEditable),
-                    _buildActionButton('Logout', Colors.red, () {
+                    _buildActionButton('Logout', Colors.red, () async {
+                      // Clear token and user data
+                      await ApiService.clearToken();
                       userProvider.updateUser(UserModel());
+
+                      // Navigate to login
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         '/',
@@ -226,7 +231,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  // Helper methods remain the same
   Widget _buildProfileRow(List<Widget> children) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
