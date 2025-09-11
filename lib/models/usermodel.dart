@@ -13,8 +13,6 @@ class UserModel {
   String emergencyContactName;
   String emergencyContactPhone;
   String emergencyContactRelation;
-  String insuranceCompany;
-  String insurancePolicyNumber;
 
   // Additional fields for backend integration
   String? id;
@@ -43,8 +41,6 @@ class UserModel {
     this.emergencyContactName = '',
     this.emergencyContactPhone = '',
     this.emergencyContactRelation = '',
-    this.insuranceCompany = '',
-    this.insurancePolicyNumber = '',
     // New fields
     this.id,
     this.profilePhoto,
@@ -76,8 +72,6 @@ class UserModel {
       emergencyContactName: json['emergencyContactName'] ?? '',
       emergencyContactPhone: json['emergencyContactPhone'] ?? '',
       emergencyContactRelation: json['emergencyContactRelation'] ?? '',
-      insuranceCompany: json['insuranceCompany'] ?? '',
-      insurancePolicyNumber: json['insurancePolicyNumber'] ?? '',
       profilePhoto: json['profilePhoto'],
       bloodGroup: json['bloodGroup'] ?? '',
       allergies: List<String>.from(json['allergies'] ?? []),
@@ -112,8 +106,6 @@ class UserModel {
       'emergencyContactName': emergencyContactName,
       'emergencyContactPhone': emergencyContactPhone,
       'emergencyContactRelation': emergencyContactRelation,
-      'insuranceCompany': insuranceCompany,
-      'insurancePolicyNumber': insurancePolicyNumber,
       if (profilePhoto != null) 'profilePhoto': profilePhoto,
       'bloodGroup': bloodGroup,
       'allergies': allergies,
@@ -173,9 +165,6 @@ class UserModel {
           emergencyContactPhone ?? this.emergencyContactPhone,
       emergencyContactRelation:
           emergencyContactRelation ?? this.emergencyContactRelation,
-      insuranceCompany: insuranceCompany ?? this.insuranceCompany,
-      insurancePolicyNumber:
-          insurancePolicyNumber ?? this.insurancePolicyNumber,
       profilePhoto: profilePhoto ?? this.profilePhoto,
       bloodGroup: bloodGroup ?? this.bloodGroup,
       allergies: allergies ?? this.allergies,

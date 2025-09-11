@@ -20,10 +20,10 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           title: Row(
             children: [
-              const Icon(Icons.location_on, color: Color(0xFF0D47A1)),
-              const SizedBox(width: 8),
+              // const Icon(Icons.location_on, color: Color(0xFF0D47A1)),
+              // const SizedBox(width: 8),
               const Text(
-                'Location from User Input/maps',
+                'Tourist Safety Monitor',
                 style: TextStyle(color: Colors.black54, fontSize: 14),
               ),
               const Spacer(),
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: MapView(lat: 12.9716, lng: 77.5946),
+                child: Mapview(),
               ),
               const SizedBox(height: 30),
               // Personal Details Section

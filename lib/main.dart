@@ -5,9 +5,10 @@ import 'package:smart_tourist/screens/Registerscreen.dart';
 import 'package:smart_tourist/screens/homescreen.dart';
 import 'package:smart_tourist/screens/loginscreen.dart';
 import 'package:smart_tourist/screens/profilescreen.dart';
+import 'package:smart_tourist/screens/qrscreen.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(SafeArea(child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -24,6 +25,7 @@ class MainApp extends StatelessWidget {
         initialRoute: '/register',
         routes: {
           '/login': (context) => const Loginscreen(),
+          '/qrscreen': (context) => const QrDisplayScreen(),
           '/register': (context) => const Registerscreen(),
           '/home': (context) => const HomeScreen(),
           '/profile': (context) => const ProfileScreen(),
