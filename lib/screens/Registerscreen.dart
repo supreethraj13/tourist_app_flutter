@@ -98,7 +98,12 @@ class _RegisterScreenState extends State<Registerscreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Header
-                Icon(Icons.person_add, size: 80, color: Colors.blue),
+                Image.asset(
+                  'lib/assets/imgs/tourist_app_logo.jpg',
+                  height: 80,
+                  errorBuilder: (c, e, s) =>
+                      const Icon(Icons.security, size: 80, color: Colors.blue),
+                ),
                 SizedBox(height: 16),
                 Text(
                   'Create Your Tourist Safety Account',

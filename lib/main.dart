@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
         title: 'Tourist Safety Monitor',
         theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/register',
+        initialRoute: '/home',
         routes: {
           '/login': (context) => LoginScreen(),
           '/qrscreen': (context) => const QrDisplayScreen(),

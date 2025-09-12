@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart'; // Import the QR package
 import 'package:smart_tourist/models/usermodel.dart';
 import 'package:smart_tourist/provider/userprovider.dart';
 import 'package:smart_tourist/services/api_service.dart';
@@ -33,6 +34,10 @@ class ProfileScreen extends StatelessWidget {
       text: user.emergencyContactRelation,
     );
 
+    // Data for the QR code from the user model
+    final String qrData =
+        'Tourist ID: ${user.touristId}\nName: ${user.fullName}';
+
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4FF),
       appBar: AppBar(
@@ -56,6 +61,44 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // =========== QR CODE SECTION START ===========
+                const Center(
+                  child: Text(
+                    'Your Tourist ID',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: QrImageView(
+                      data: qrData,
+                      version: QrVersions.auto,
+                      size: 180.0,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                const Divider(thickness: 1),
+                const SizedBox(height: 15),
+
+                // =========== QR CODE SECTION END ===========
                 _buildProfileRow([
                   _buildProfileField('Full Name', nameController, isEditable),
                 ]),

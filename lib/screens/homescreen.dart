@@ -58,7 +58,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Mapview(),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 18),
+              _buildDetailCard('Safety Index', ''),
+              const SizedBox(height: 18),
               // Personal Details Section
               const Text(
                 'Personal Details',
@@ -71,21 +73,21 @@ class HomeScreen extends StatelessWidget {
                   _buildDetailChip('Age'),
                   _buildDetailChip('Blood Group'),
                   _buildDetailChip('Gender'),
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey.shade400),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Photo',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   width: 60,
+                  //   height: 60,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.grey[200],
+                  //     borderRadius: BorderRadius.circular(10),
+                  //     border: Border.all(color: Colors.grey.shade400),
+                  //   ),
+                  //   child: const Center(
+                  //     child: Text(
+                  //       'Photo',
+                  //       style: TextStyle(color: Colors.grey),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 20),
