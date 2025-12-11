@@ -41,7 +41,7 @@ By leveraging **Google Maps API** for geolocation and **Blockchain** for secure 
 
 ## 📱 App Screenshots
 
-| Registration & OTP | Dashboard & Map | SOS & Profile |
+| Registration & OTP | Dashboard & Map & SOS | Profile |
 |:---:|:---:|:---:|
 | <img src="register.jpg" width="200" alt="Registration Page"> | <img src="Home.jpg" width="200" alt="Map Dashboard"> | <img src="profile.jpg" width="200" alt="Profile QR"> |
 
@@ -118,4 +118,5 @@ Built with ❤️ by **Team Codeshack**.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
