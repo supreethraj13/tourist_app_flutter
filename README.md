@@ -43,7 +43,7 @@ By leveraging **Google Maps API** for geolocation and **Blockchain** for secure 
 
 | Registration & OTP | Dashboard & Map | SOS & Profile |
 |:---:|:---:|:---:|
-| <img src="assets/screenshots/register.png" width="200" alt="Registration Page"> | <img src="assets/screenshots/map_view.png" width="200" alt="Map Dashboard"> | <img src="assets/screenshots/profile_qr.png" width="200" alt="Profile QR"> |
+| <img src="register.jpg" width="200" alt="Registration Page"> | <img src="Home.jpg" width="200" alt="Map Dashboard"> | <img src="profile.jpg" width="200" alt="Profile QR"> |
 
 > *Note: Replace the paths above with the actual paths to your screenshots in the repo.*
 
@@ -118,3 +118,4 @@ Built with ❤️ by **Team Codeshack**.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
