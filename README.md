@@ -54,7 +54,7 @@ By leveraging **Google Maps API** for geolocation and **Blockchain** for secure 
 * **Frontend:** [Flutter](https://flutter.dev/) (Dart)
 * **State Management:** Provider
 * **Maps & Location:** Google Maps API, Geolocator
-* **Backend & Auth:** Firebase (Auth, Firestore), Python (Flask)
+* **Backend & Auth:** JS, MongoDB
 * **Security:** Blockchain (for Digital Identity/DID)
 * **Other Tools:** Clipchamp (Demo Video), VS Code
 
@@ -105,18 +105,10 @@ By leveraging **Google Maps API** for geolocation and **Blockchain** for secure 
 
 ---
 
-## 👥 Team Codeshack
-
-Built with ❤️ by **Team Codeshack**.
-
-* **Supreeth** - App Development & API Integration
-* *[Teammate Name]* - Backend & Blockchain
-* *[Teammate Name]* - UI/UX Design
-
----
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 
